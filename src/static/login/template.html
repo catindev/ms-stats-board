@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mindsales</title>
+    <BASE href="/">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/common/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/login/styles.css">
+</head>
+
+<body>
+    <form id="loginForm">
+        <h1>Вход в Майндсейлс</h1>
+        <div class="message" id="errorMessage"></div>
+        <div class="message" id="infoMessage">
+            СМС с одноразовым паролем отправлена. Пароль будет действовать ешё 3 минуты
+        </div>
+        <div class="formGroup" id="phoneNumber">
+          <label>Номер телефона</label>
+          <input type="tel" name="login"/>
+        </div>
+        <div class="formGroup" id="smsCode" style="display: none">
+          <label>Код из сообщения</label>
+          <input type="number" name="code"/>
+        </div> 
+
+        <button id="theButton">Отправить СМС с паролем</button>       
+    </form>    
+
+    <script src="https://cdn.ravenjs.com/3.19.1/raven.min.js"></script>
+    <script type="text/javascript">
+        Raven
+            .config('https://38eb5217172a4497bd9f0bc5acf86e6e@sentry.io/233872')
+            .install()
+    </script>
+    <script src="static/common/script.js"></script>
+    <script src="static/login/script.js"></script>
+</body>
+
+</html>
