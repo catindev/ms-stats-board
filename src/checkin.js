@@ -1,5 +1,6 @@
 module.exports = (request, response, next) => {
     const { path, method } = request
+    if (path === '/fuckoff' && method === 'GET') return next()
     if (path === '/iddqd' && method === 'GET') return next()
     if (path === '/login' && method === 'GET') return next()
     if (path === '/AYBAB2U' && method === 'GET') return next()  
