@@ -43,8 +43,9 @@
                 document.cookie = `msid=${token};expires=${expires};path=/`
                 window.location.href = "/leads";
             })
-            .catch(error => {
-                errorMessage.innerText = error.message + '  😦'
+            .catch(({ message }) => {
+
+                errorMessage.innerText = (message || 'Ошибка входа. Проверьте соединение с интернетом или войдите через браузер <a href="https://www.google.ru/chrome/browser/desktop/index.html">гугл хром</a>') + '  😦'
                 errorMessage.style.display = 'block'
                 loginForm.classList.add("shake")
                 setTimeout(() => loginForm.classList.remove("shake"), 1000)
