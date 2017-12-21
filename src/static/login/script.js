@@ -44,7 +44,7 @@
                 window.location.href = "/leads";
             })
             .catch(({ message }) => {
-
+                if (message === 'Failed to fetch') message = 'Ошибка входа. Проверьте подключен ли компьютер к интернету'
                 errorMessage.innerText = (message || 'Ошибка входа. Проверьте соединение с интернетом или войдите через браузер <a href="https://www.google.ru/chrome/browser/desktop/index.html">гугл хром</a>') + '  😦'
                 errorMessage.style.display = 'block'
                 loginForm.classList.add("shake")
