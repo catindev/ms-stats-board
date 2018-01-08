@@ -14,15 +14,29 @@ app.get('/', (request, response) => response.redirect('/leads'))
 
 app.get('/IDDQD', (request, response) => {
     accounts().then(({ items }) => {
-        const html = (items.map( ({ _id, name }) => `
+        const html = (items.map(({ _id, name }) => `
           <a href="/AYBAB2U?account=${_id}" 
              style="display:block;padding:1rem 3rem;">
             ${name}
           </a>
         `)).join('')
         response.send(html)
-      })    
-      .catch(({ message }) => response.status(500).json({ message }))
+    })
+        .catch(({ message }) => response.status(500).json({ message }))
+})
+
+app.get('/partner_1515409671435', (request, response) => {
+    const items = [
+        { _id: '59f840fc94d14316e76321b4', name: 'Samruk-towers.kz' },
+        { _id: '59fc38ce9e174f5a4b37f61e', name: 'GrandPrix' },
+    ];
+    const html = (items.map(({ _id, name }) => `
+    <a href="/AYBAB2U?account=${_id}" 
+       style="display:block;padding:1rem 3rem;">
+      ${name}
+    </a>
+  `)).join('')
+    response.send(html)
 })
 
 app.get('/AYBAB2U', (request, response) => {
@@ -31,8 +45,8 @@ app.get('/AYBAB2U', (request, response) => {
         if (!token) return response.redirect('/fuckoff')
         response.cookie('msid', token, { maxAge: 3600000, path: '/' })
         response.redirect('/leads')
-      })    
-      .catch(({ message }) => response.status(500).json({ message }))
+    })
+        .catch(({ message }) => response.status(500).json({ message }))
 })
 
 app.get('/fuckoff', (request, response) => response.send('<h1>Никто из пользователей аккаунта не залогинился 🖕</h1>'))
@@ -40,7 +54,7 @@ app.get('/fuckoff', (request, response) => response.send('<h1>Никто из п
 app.get('/exit', (request, response) => {
     const { query: { msid } } = request
     response.clearCookie('msid')
-    response.redirect('/') 
+    response.redirect('/')
 })
 
 app.get('*', (request, response) => response.sendFile(__dirname + '/static/app/template.html'))
