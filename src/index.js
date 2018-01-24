@@ -39,6 +39,21 @@ app.get('/partner_1515409671435', (request, response) => {
     response.send(html)
 })
 
+app.get('/fitness_1516777015374', (request, response) => {
+    const items = [
+        { _id: '5a617141f45a3f2913db2cdf', name: 'Aerofit Vostok' },
+        { _id: '5a6195c2f45a3f2913db2ce9', name: 'Aerofit Гульдер' },
+        { _id: '5a619e95f45a3f2913db2cf4', name: 'Aerofit Lady\'s' },
+    ];
+    const html = (items.map(({ _id, name }) => `
+    <a href="/AYBAB2U?account=${_id}" 
+       style="display:block;padding:1rem 3rem;">
+      ${name}
+    </a>
+  `)).join('')
+    response.send(html)
+})
+
 app.get('/AYBAB2U', (request, response) => {
     const { query: { account } } = request
     sessionFindOne(account).then(({ token }) => {
