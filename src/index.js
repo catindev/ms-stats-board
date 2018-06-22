@@ -1,16 +1,19 @@
 const express = require('express')
 const app = express()
+const router = express.Router()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const checkIn = require('./checkin')
 const { sessionFindOne, accounts } = require('./magixAPI')
+var callcenter = require('./callcenter')
+
 
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(checkIn)
 
-app.get('/', (request, response) => response.redirect('/leads'))
+router.get('/', (request, response) => response.redirect('/leads'))
 
 app.get('/IDDQD', (request, response) => {
     accounts().then(({ items }) => {
@@ -71,6 +74,9 @@ app.get('/exit', (request, response) => {
     response.clearCookie('msid')
     response.redirect('/')
 })
+
+app.get('/callcenter', (request, response) => response.sendFile(__dirname + '/static/callcenter/index.html'))
+app.get('/callcenter/all', (request, response) => response.sendFile(__dirname + '/static/callcenter/index.html'))
 
 app.get('*', (request, response) => response.sendFile(__dirname + '/static/app/index.html'))
 
