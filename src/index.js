@@ -76,8 +76,6 @@ app.get('/exit', (request, response) => {
 })
 
 app.get('/callcenter', (request, response) => response.sendFile(__dirname + '/static/callcenter/index.html'))
-app.get('/callcenter/all', (request, response) => response.sendFile(__dirname + '/static/callcenter/index.html'))
-
 app.get('*', (request, response) => response.sendFile(__dirname + '/static/app/index.html'))
 
 const listener = app.listen(5010, () => console.log('Started at', listener.address().port))
